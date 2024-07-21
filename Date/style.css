@@ -1,0 +1,32 @@
+body {
+    font-family: "Karla", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Light background for better contrast */
+}
+
+#date-container {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #333; /* Optional: Border to enhance visibility */
+    border-radius: 10px;
+    background-color: #fff; /* White background for the date display */
+}
+
+#date-label {
+    font-style: italic;
+    font-family: "Karla", sans-serif; /* Digital clock look */
+    font-size: 1.5em;
+    color: #333; /* Dark text for readability */
+}
+
+#date-display {
+    font-style: italic;
+    font-family: "Karla", sans-serif; /* Digital clock look */
+    font-size: 2.769em;
+    font-weight: 800;
+    color: #333; /* Dark text for readability */
+}
