@@ -1,1 +1,76 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Pomodoro Time Tracker - 5-8-23</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer - Minimalist Pomodoro Timer for Working and Studying</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div id="pomodoro-container">
+    <div id="interval-container">
+      <button id="short-break-interval-btn" class="interval-btn">Short Break</button>
+      <button id="pomodoro-interval-btn" class="interval-btn">Focus</button>
+      <button id="long-break-interval-btn" class="interval-btn">Long Break</button>
+    </div>
+    <div id="timer-container">
+      <div id="time-left">25:00</div>
+    </div>
+    <div id="start-stop-reset-container">
+      <button id="start-stop-btn">Start</button>
+      <button id="reset-btn"><i class="fas fa-redo-alt"></i></button>
+      <button id="settings-btn"><i class="fas fa-cog"></i></button>
+    </div>
+  </div>
+
+  <!-- Modal for Settings -->
+  <div id="settings-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="setting-wrapper">
+      <h3>Settings</h3>
+      <div class="setting-option">
+        <label for="background-color">Choose the Background Color</label>
+        <select id="background-color">
+            <option value="#ebe9e9">Default</option>
+          <option value="#1d282e">DM Blue</option>
+          <option value="#e7f3f8">LM Blue</option>
+        </select>
+      </div>
+      <div class="setting-option">
+        <label for="font-color">Choose the Font Color</label>
+        <select id="font-color">
+          <option value="#37352F">Default</option>
+          <option value="#337ea9">LM Blue</option>
+
+          <option value="#D4D4D4">DM White</option>
+        </select>
+        <button id="save-btn">Save</button>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
