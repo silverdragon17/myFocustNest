@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Pomodoro Time Tracker</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,26 +30,20 @@
     <div class="modal-content">
       <span class="close-btn">&times;</span>
       <div class="setting-wrapper">
-      <h3>Settings</h3>
-      <div class="setting-option">
-        <label for="background-color">Choose the Background Color</label>
-        <select id="background-color">
-            <option value="#F7ECDF">Default</option>
-          <option value="#1d282e">DM Blue</option>
-          <option value="#e7f3f8">LM Blue</option>
-        </select>
-      </div>
-      <div class="setting-option">
-        <label for="font-color">Choose the Font Color</label>
-        <select id="font-color">
-          <option value="#37352F">Default</option>
-          <option value="#337ea9">LM Blue</option>
-
-          <option value="#D4D4D4">DM White</option>
-        </select>
+        <h3>Settings</h3>
+        <div class="setting-option">
+          <label for="pomodoro-duration">Pomodoro Duration (minutes)</label>
+          <input type="number" id="pomodoro-duration" value="25">
+        </div>
+        <div class="setting-option">
+          <label for="short-break-duration">Short Break Duration (minutes)</label>
+          <input type="number" id="short-break-duration" value="5">
+        </div>
+        <div class="setting-option">
+          <label for="long-break-duration">Long Break Duration (minutes)</label>
+          <input type="number" id="long-break-duration" value="10">
+        </div>
         <button id="save-btn">Save</button>
-      </div>
-      
       </div>
     </div>
   </div>
@@ -68,9 +52,4 @@
   <script src="./script.js"></script>
 </body>
 
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
-</body>
 </html>
