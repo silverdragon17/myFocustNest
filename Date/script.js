@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateDateDisplay() {
             const today = new Date();
-            dateDisplayElement.textContent = formatDate(today);
+            dateDisplayElement.innerHTML = formatDate(today);
         }
 
         updateDateDisplay();
