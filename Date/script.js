@@ -19,6 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateDateDisplay();
     } else {
-        console.error('Element with id "date-display" or "date-label" not found.');
+        console.error(`Element with id "date-display" or "date-label" not found.`);
     }
 });
