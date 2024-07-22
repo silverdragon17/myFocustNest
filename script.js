@@ -2,7 +2,7 @@
 let timeLeft = 25 * 60; // seconds
 let timerInterval;
 let currentInterval = 'pomodoro';
-let backgroundColor = '#fff'; // Default background color
+let backgroundColor = '#F7ECDF'; // Default background color to match the notion template setup
 let fontColor = '#595858'; // Default font color
 
 // DOM elements
