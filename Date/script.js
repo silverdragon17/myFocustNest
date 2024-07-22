@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const dateDisplayElement = document.getElementById('date-display');
-    const dateLabelElement = document.getElementById('date-label');
+    //const dateLabelElement = document.getElementById('date-label');
 
     if (dateDisplayElement && dateLabelElement) {
         function formatDate(date) {
