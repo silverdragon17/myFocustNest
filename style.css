@@ -100,7 +100,7 @@ body {
 
 .close-btn {
   color: #000;
-  float: right;
+  float: left;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
