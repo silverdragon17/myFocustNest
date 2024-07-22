@@ -2,8 +2,6 @@
 let timeLeft = 25 * 60; // seconds
 let timerInterval;
 let currentInterval = 'pomodoro';
-let backgroundColor = '#F7ECDF'; // Default background color to match the notion template setup
-let fontColor = '#595858'; // Default font color
 
 // DOM elements
 const timeLeftEl = document.getElementById('time-left');
@@ -15,26 +13,32 @@ const longBreakIntervalBtn = document.getElementById('long-break-interval-btn');
 const settingsBtn = document.getElementById('settings-btn');
 const settingsModal = document.getElementById('settings-modal');
 const closeModalBtn = document.querySelector('.close-btn');
-const backgroundColorSelect = document.getElementById('background-color');
-const fontColorSelect = document.getElementById('font-color');
+const pomodoroDurationInput = document.getElementById('pomodoro-duration');
+const shortBreakDurationInput = document.getElementById('short-break-duration');
+const longBreakDurationInput = document.getElementById('long-break-duration');
 const saveBtn = document.getElementById('save-btn');
+
+// Default durations in seconds
+let pomodoroDuration = 25 * 60; // 25 minutes
+let shortBreakDuration = 5 * 60; // 5 minutes
+let longBreakDuration = 10 * 60; // 10 minutes
 
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
   currentInterval = 'pomodoro';
-  timeLeft = 25 * 60;
+  timeLeft = pomodoroDuration;
   updateTimeLeftTextContent();
 });
 
 shortBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'short-break';
-  timeLeft = 5 * 60;
+  timeLeft = shortBreakDuration;
   updateTimeLeftTextContent();
 });
 
 longBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'long-break';
-  timeLeft = 10 * 60;
+  timeLeft = longBreakDuration;
   updateTimeLeftTextContent();
 });
 
@@ -51,13 +55,7 @@ startStopBtn.addEventListener('click', () => {
 // Event listener for reset button
 resetBtn.addEventListener('click', () => {
   stopTimer();
-  if (currentInterval === 'pomodoro') {
-    timeLeft = 25 * 60;
-  } else if (currentInterval === 'short-break') {
-    timeLeft = 5 * 60;
-  } else {
-    timeLeft = 10 * 60;
-  }
+  resetTimer();
   updateTimeLeftTextContent();
   startStopBtn.textContent = 'Start';
 });
@@ -65,6 +63,10 @@ resetBtn.addEventListener('click', () => {
 // Event listener for settings button
 settingsBtn.addEventListener('click', () => {
   settingsModal.style.display = 'flex';
+  // Set current durations in the input fields
+  pomodoroDurationInput.value = pomodoroDuration / 60;
+  shortBreakDurationInput.value = shortBreakDuration / 60;
+  longBreakDurationInput.value = longBreakDuration / 60;
 });
 
 // Event listener for close button in the settings modal
@@ -74,15 +76,14 @@ closeModalBtn.addEventListener('click', () => {
 
 // Event listener for save button in the settings modal
 saveBtn.addEventListener('click', () => {
-  const newBackgroundColor = backgroundColorSelect.value;
-  const newFontColor = fontColorSelect.value;
+  // Update timer durations from input fields
+  pomodoroDuration = parseInt(pomodoroDurationInput.value) * 60;
+  shortBreakDuration = parseInt(shortBreakDurationInput.value) * 60;
+  longBreakDuration = parseInt(longBreakDurationInput.value) * 60;
 
-  // Save preferences to localStorage
-  localStorage.setItem('backgroundColor', newBackgroundColor);
-  localStorage.setItem('fontColor', newFontColor);
-
-  // Apply the new saved preferences
-  applyUserPreferences();
+  // Reset the timer to the current interval
+  resetTimer();
+  updateTimeLeftTextContent();
 
   // Close the modal after saving preferences
   settingsModal.style.display = 'none';
@@ -95,18 +96,7 @@ function startTimer() {
     updateTimeLeftTextContent();
     if (timeLeft === 0) {
       clearInterval(timerInterval);
-      if (currentInterval === 'pomodoro') {
-        timeLeft = 5 * 60;
-        currentInterval = 'short-break';
-        startTimer();
-      } else if (currentInterval === 'short-break') {
-        timeLeft = 10 * 60;
-        currentInterval = 'long-break';
-        startTimer();
-      } else {
-        timeLeft = 25 * 60;
-        currentInterval = 'pomodoro';
-      }
+      switchInterval();
     }
   }, 1000);
 }
@@ -117,6 +107,31 @@ function stopTimer() {
   startStopBtn.textContent = 'Start';
 }
 
+// Function to reset the timer based on the current interval
+function resetTimer() {
+  if (currentInterval === 'pomodoro') {
+    timeLeft = pomodoroDuration;
+  } else if (currentInterval === 'short-break') {
+    timeLeft = shortBreakDuration;
+  } else {
+    timeLeft = longBreakDuration;
+  }
+}
+
+// Function to switch intervals
+function switchInterval() {
+  if (currentInterval === 'pomodoro') {
+    currentInterval = 'short-break';
+    timeLeft = shortBreakDuration;
+  } else if (currentInterval === 'short-break') {
+    currentInterval = 'long-break';
+    timeLeft = longBreakDuration;
+  } else {
+    currentInterval = 'pomodoro';
+    timeLeft = pomodoroDuration;
+  }
+}
+
 // Function to update the time left text content
 function updateTimeLeftTextContent() {
   const minutes = Math.floor(timeLeft / 60);
@@ -124,33 +139,5 @@ function updateTimeLeftTextContent() {
   timeLeftEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
-// Function to apply the user's saved preferences
-function applyUserPreferences() {
-  // Retrieve user preferences from localStorage
-  const savedBackgroundColor = localStorage.getItem('backgroundColor');
-  const savedFontColor = localStorage.getItem('fontColor');
-
-  // Apply the preferences if they exist in localStorage
-  if (savedBackgroundColor) {
-    backgroundColor = savedBackgroundColor;
-  }
-
-  if (savedFontColor) {
-    fontColor = savedFontColor;
-  }
-
-  // Apply the preferences to the Pomodoro Timer widget
-  document.body.style.backgroundColor = backgroundColor;
-  document.body.style.color = fontColor;
-  timeLeftEl.style.color = fontColor;
-  // Update the buttons' font and background color
-  const buttons = document.querySelectorAll('.interval-btn, #start-stop-btn, #reset-btn, #settings-btn');
-  buttons.forEach((button) => {
-    button.style.color = fontColor;
-    button.style.backgroundColor = backgroundColor;
-    button.style.borderColor = fontColor;
-  });
-}
-
 // Apply user preferences on page load
-applyUserPreferences();
+updateTimeLeftTextContent();
