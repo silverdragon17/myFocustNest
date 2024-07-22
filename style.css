@@ -168,3 +168,9 @@ select {
   cursor: inherit;
   line-height: inherit;
 }
+
+#frame-container {
+    border: 2px solid #333; /* Add a 2-pixel solid border with a color of your choice */
+    padding: 20px; /* Add some padding to create space between the border and the content */
+    border-radius: 8px; /* Add rounded corners to the border */
+  }
