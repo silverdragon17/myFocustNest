@@ -15,7 +15,7 @@ body {
   justify-content: center;
   height: 100vh;
   max-width: 250px;
-  margin: auto;
+  margin: 0px auto;
   padding: 1.1rem;
   box-sizing: border-box;
 }
