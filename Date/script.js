@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dateDisplayElement = document.getElementById('date-display');
     //const dateLabelElement = document.getElementById('date-label');
 
-    if (dateDisplayElement && dateLabelElement) {
+    if (dateDisplayElement) {
         function formatDate(date) {
             const days = [`Ahad`, `Isnin`, `Selasa`, `Rabu`, `Khamis`, `Jumaat`, `Sabtu`];
             const dayName = days[date.getDay()];
