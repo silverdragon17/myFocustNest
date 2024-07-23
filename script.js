@@ -47,11 +47,12 @@ longBreakIntervalBtn.addEventListener('click', () => {
 
 // Event listener for start/stop button
 startStopBtn.addEventListener('click', () => {
-  if (startStopBtn.textContent === 'Start') {
+  if (startStopBtn.innerHTML.includes('bx bx-play bx-xs bx-burst-hover')) {
     startTimer();
-    startStopBtn.textContent = 'Pause';
+    startStopBtn.innerHTML = "<i class='bx bx-pause bx-xs bx-burst-hover'></i>";
   } else {
     stopTimer();
+    startStopBtn.innerHTML = "<i class='bx bx-play bx-xs bx-burst-hover'></i>";
   }
 });
 
@@ -60,7 +61,7 @@ resetBtn.addEventListener('click', () => {
   stopTimer();
   resetTimer();
   updateTimeLeftTextContent();
-  startStopBtn.textContent = 'Start';
+  startStopBtn.innerHTML = "<i class='bx bx-play bx-xs bx-burst-hover'></i>";
 });
 
 // Event listener for settings button
