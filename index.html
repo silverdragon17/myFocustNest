@@ -11,18 +11,18 @@
 <body>
   <div id="pomodoro-container">
     <div id="frame-container">
-    <div id="interval-container">
-      <button id="short-break-interval-btn" class="interval-btn">Short Break</button>
-      <button id="pomodoro-interval-btn" class="interval-btn">Focus</button>
-      <button id="long-break-interval-btn" class="interval-btn">Long Break</button>
-    </div>
+        <div id="interval-container">
+            <button id="short-break-interval-btn" class="interval-btn">Short Break</button>
+            <button id="pomodoro-interval-btn" class="interval-btn">Focus</button>
+            <button id="long-break-interval-btn" class="interval-btn">Long Break</button>
+        </div>
     <div id="timer-container">
       <div id="time-left">25:00</div>
     </div>
     <div id="start-stop-reset-container">
       <button id="start-stop-btn">Start</button>
-      <button id="reset-btn"><i class="fas fa-redo-alt"></i></button>
-      <button id="settings-btn"><i class="fas fa-cog"></i></button>
+      <button id="reset-btn"><i class='bx bx-reset bx-xs bx-tada-hover'></i></button>
+      <button id="settings-btn"><i class='bx bxs-cog bx-xs bx-spin-hover'></i></button>
     </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
       <div class="setting-wrapper">
         <h3>Settings</h3>
         <div class="setting-option">
-          <label for="pomodoro-duration">Pomodoro Duration (minutes)</label>
+          <label for="pomodoro-duration">Focus Duration (minutes)</label>
           <input type="number" id="pomodoro-duration" value="25">
         </div>
         <div class="setting-option">
@@ -50,7 +50,6 @@
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
   <script src="./script.js"></script>
 </body>
 
