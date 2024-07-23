@@ -26,19 +26,22 @@ let longBreakDuration = 10 * 60; // 10 minutes
 // Event listeners for interval buttons
 pomodoroIntervalBtn.addEventListener('click', () => {
   currentInterval = 'pomodoro';
-  timeLeft = pomodoroDuration;
+  highlightCurrentMode();
+  resetTimer();
   updateTimeLeftTextContent();
 });
 
 shortBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'short-break';
-  timeLeft = shortBreakDuration;
+  highlightCurrentMode();
+  resetTimer();
   updateTimeLeftTextContent();
 });
 
 longBreakIntervalBtn.addEventListener('click', () => {
   currentInterval = 'long-break';
-  timeLeft = longBreakDuration;
+  highlightCurrentMode();
+  resetTimer();
   updateTimeLeftTextContent();
 });
 
@@ -46,7 +49,7 @@ longBreakIntervalBtn.addEventListener('click', () => {
 startStopBtn.addEventListener('click', () => {
   if (startStopBtn.textContent === 'Start') {
     startTimer();
-    startStopBtn.textContent = 'Stop';
+    startStopBtn.textContent = 'Pause';
   } else {
     stopTimer();
   }
@@ -96,10 +99,12 @@ function startTimer() {
     updateTimeLeftTextContent();
     if (timeLeft === 0) {
       clearInterval(timerInterval);
-      switchInterval();
+      resetTimer();
+      updateTimeLeftTextContent();
     }
   }, 1000);
 }
+
 
 // Function to stop the timer
 function stopTimer() {
@@ -120,17 +125,14 @@ function resetTimer() {
 
 // Function to switch intervals
 function switchInterval() {
-  if (currentInterval === 'pomodoro') {
-    currentInterval = 'short-break';
-    timeLeft = shortBreakDuration;
-  } else if (currentInterval === 'short-break') {
-    currentInterval = 'long-break';
-    timeLeft = longBreakDuration;
-  } else {
-    currentInterval = 'pomodoro';
-    timeLeft = pomodoroDuration;
+    if (currentInterval === 'pomodoro') {
+      setIntervalMode('short-break', shortBreakDuration);
+    } else if (currentInterval === 'short-break') {
+      setIntervalMode('long-break', longBreakDuration);
+    } else {
+      setIntervalMode('pomodoro', pomodoroDuration);
+    }
   }
-}
 
 // Function to update the time left text content
 function updateTimeLeftTextContent() {
@@ -139,5 +141,30 @@ function updateTimeLeftTextContent() {
   timeLeftEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+// Function to set the interval mode (changed from "time to duration")
+function setIntervalMode(interval, duration) {
+    currentInterval = interval;
+    timeLeft = duration;
+    updateTimeLeftTextContent();
+    highlightCurrentMode();
+  }
+
+// Function to highlight the current mode
+function highlightCurrentMode() {
+    const modes = {
+      pomodoro: pomodoroIntervalBtn,
+      'short-break': shortBreakIntervalBtn,
+      'long-break': longBreakIntervalBtn
+    };
+  
+    Object.values(modes).forEach(btn => btn.classList.remove('active'));
+    modes[currentInterval].classList.add('active');
+    /*console.log('Highlighting:', currentInterval); // Debugging line*/
+  }
+  
+ 
+ // Initial highlight
+highlightCurrentMode();
+
 // Apply user preferences on page load
-updateTimeLeftTextContent();
+ updateTimeLeftTextContent();
